@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class PlayerManager : MonoBehaviour
     private Vector3 throwForce;
 
     public int score;
+    Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = hand.GetComponent<Rigidbody>();
+    }
 
     // set cursor and hand settings on game begin
     private void OnEnable()
@@ -34,9 +41,6 @@ public class PlayerManager : MonoBehaviour
         // apply cursor movement to hand position
         handPos.x += Input.GetAxis("Mouse X") * sensitivity / 100;
         handPos.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
-
-        Debug.Log("user input mouse x / y: " + Input.GetAxis("Mouse X") + " | " + Input.GetAxis("Mouse Y"));
-        Debug.Log("updated hand position x / y: " + handPos.x + " | " + handPos.y);
 
         // restrict hand from going out of bounds
         //if (handPos.x > 15)
@@ -64,8 +68,10 @@ public class PlayerManager : MonoBehaviour
             hand.transform.position = holding.transform.position;
         } else
         {
-            hand.GetComponent<Rigidbody>().MovePosition(handPos);
-            handPos = hand.transform.position;
+            Vector3 newPosition = hand.transform.position;
+            newPosition.x += handPos.x;
+            newPosition.z += handPos.z;
+            rb.MovePosition(handPos);
         }
 
         cam.transform.position = new Vector3(handPos.x, cam.transform.position.y, handPos.z);
