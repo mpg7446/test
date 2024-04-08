@@ -20,7 +20,7 @@ public class start : MonoBehaviour
 
     [Space(13)]
     public genTypes genType;
-    public int roomCoordsLength = 3;
+    public int cubicLoop = 3;
     [HideInInspector] public bool[] roomCoords;
     [HideInInspector] public bool[] roomWalls;
 
@@ -34,8 +34,13 @@ public class start : MonoBehaviour
 
     // rooms
     [Header("Rooms")]
-    public List<GameObject> rooms = new List<GameObject>();
-    public List<GameObject> placedRooms = new List<GameObject>();
+    public List<GameObject> largeRooms = new List<GameObject>();
+    public List<GameObject> mediumRooms = new List<GameObject>();
+    public List<GameObject> smallRooms = new List<GameObject>();
+
+    // placed rooms for room generation
+    private List<GameObject> placedRooms = new List<GameObject>();
+
     void OnEnable()
     {
         // destroy old rooms
@@ -54,13 +59,19 @@ public class start : MonoBehaviour
         // begin room generation
         if (genType == genTypes.CUBIC) // cubic room generation
         {
-            roomCoords = new bool[roomCoordsLength * roomCoordsLength];
+            Debug.Log("roomgen: Starting Cubic Generation");
+            roomCoords = new bool[cubicLoop * cubicLoop];
             roomWalls = new bool[roomCoords.Length * 4];
             CubicRoomGeneration();
+            Debug.Log("roomgen: Cubic Generation Complete!");
         } 
         else if (genType == genTypes.DYNAMIC) // dynamic room generation
         {
+            Debug.Log("roomgen: Starting Dynamic Generation");
 
+            DynamicRoomGeneration();
+
+            Debug.Log("goofy ahhh looking rooms generated");
         }
 
         // end room generation
@@ -72,6 +83,19 @@ public class start : MonoBehaviour
         DestroyRooms();
     }
 
+    private void DynamicRoomGeneration(Vector3 offset = new Vector3())
+    {
+        if (debug)
+        {
+            GameObject firstRoom = Instantiate(debugRoom, transform.position + offset, Quaternion.identity);
+            firstRoom.name = "entry room";
+            firstRoom.transform.SetParent(transform);
+
+            placedRooms.Add(firstRoom);
+        }
+    }
+
+    // cubic room generation on a 3x3 grid
     private void CubicRoomGeneration()
     {
         // set randomly placed rooms
@@ -95,7 +119,7 @@ public class start : MonoBehaviour
             {
                 if (i != 1)
                 {
-                    CheckRoom(roomCoords, i, roomCoordsLength);
+                    CheckRoom(roomCoords, i, cubicLoop);
                 }
             }
         }
@@ -103,7 +127,7 @@ public class start : MonoBehaviour
         // place rooms
         for (int i = roomCoords.Length - 1; i >= 0; i--)
         {
-            PlaceRoom(roomCoords, i, roomSize, roomCoordsLength);
+            PlaceRoom(roomCoords, i, roomSize, cubicLoop);
         }
     }
 
@@ -234,20 +258,12 @@ public class start : MonoBehaviour
         return false;
     }
 
-    // random number generator (so that i dont have to type UnityEngine.Random.Range() every time
+    // random number generator (so that i dont have to type UnityEngine.Random.Range() every. single. time.
     private int RNG(int min, int max)
     {
         return UnityEngine.Random.Range(min, max);
     }
     private int RNG(int max)
-    {
-        return UnityEngine.Random.Range(0, max);
-    }
-    private float RNG(float min, float max)
-    {
-        return UnityEngine.Random.Range(min, max);
-    }
-    private float RNG(float max)
     {
         return UnityEngine.Random.Range(0, max);
     }

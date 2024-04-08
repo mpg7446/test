@@ -7,19 +7,24 @@ using UnityEngine.XR;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameObject cam;
     public GameObject hand;
     public float sensitivity = 10;
     private Vector3 handPos = Vector3.zero;
+    private Vector3 posUpdate = Vector3.zero;
     public GameObject holding;
     private Vector3 throwForce;
 
+    public GameObject cam;
+    public bool debug;
+
     public int score;
     Rigidbody rb;
+    SphereCollider col;
 
     private void Awake()
     {
         rb = hand.GetComponent<Rigidbody>();
+        col = hand.GetComponent<SphereCollider>();
     }
 
     // set cursor and hand settings on game begin
@@ -32,6 +37,8 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
+        Rigidbody hrb = holding.GetComponent<Rigidbody>();
+
         // clear holding if object has been collected
         if (holding == null)
         {
@@ -39,8 +46,10 @@ public class PlayerManager : MonoBehaviour
         }
 
         // apply cursor movement to hand position
-        handPos.x += Input.GetAxis("Mouse X") * sensitivity / 100;
-        handPos.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
+        posUpdate.x += Input.GetAxis("Mouse X") * sensitivity / 100;
+        posUpdate.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
+
+        handPos = WallCollision(handPos, posUpdate);
 
         // restrict hand from going out of bounds
         //if (handPos.x > 15)
@@ -63,48 +72,75 @@ public class PlayerManager : MonoBehaviour
         // apply hand motion
         if (holding != gameObject)
         {
-            holding.GetComponent<Rigidbody>().MovePosition(handPos);
-            handPos = new Vector3(holding.transform.position.x, handPos.y, holding.transform.position.z);
-            hand.transform.position = holding.transform.position;
+            // move holding object and hand
+            hrb.MovePosition(handPos);
+            rb.MovePosition(handPos);
+
+            // update handPos with new vector
+            handPos.x = hrb.position.x;
+            handPos.z = hrb.position.z;
         } else
         {
-            Vector3 newPosition = hand.transform.position;
-            newPosition.x += handPos.x;
-            newPosition.z += handPos.z;
             rb.MovePosition(handPos);
             handPos = rb.position;
         }
 
-        cam.transform.position = new Vector3(handPos.x, cam.transform.position.y, handPos.z);
+        if (debug)
+        {
+            cam.transform.position = new Vector3(handPos.x, cam.transform.position.y, handPos.z);
+        }
 
         // left click detection
         if (Input.GetMouseButton(0) && holding == gameObject)
         {
             Grab();
-        } else if (Input.GetMouseButton(0) && holding != gameObject)
+        }
+        else if (Input.GetMouseButton(0) && holding != gameObject)
         {
             // why is rigidbody so buggyyyyyy
             // please it just causes more and more problems
             throwForce = (handPos - holding.transform.position) * 50;
-            //holding.GetComponent<Rigidbody>().MovePosition(handPos);
-            holding.GetComponent<Rigidbody>().useGravity = false;
+            hrb.useGravity = false;
 
             // disable hand collision while holding
-            hand.GetComponent<SphereCollider>().enabled = false;
-        } else
+            col.enabled = false;
+        }
+        else
         {
             if (holding != null && holding != gameObject)
             {
-                holding.GetComponent<Rigidbody>().useGravity = true;
+                hrb.useGravity = true;
 
-                holding.GetComponent<Rigidbody>().AddForce(throwForce, ForceMode.Impulse);
+                hrb.AddForce(throwForce, ForceMode.Impulse);
                 Debug.Log("threw object with force of " + throwForce);
             }
             holding = gameObject;
 
             // enable hand collisions when not holding
-            hand.GetComponent<SphereCollider>().enabled = true;
+            Invoke("ThrowCooldown", 1.0f);
         }
+    }
+
+    void ThrowCooldown()
+    {
+        col.enabled = true;
+    }
+
+    private Vector3 WallCollision(Vector3 pos1, Vector3 pos2)
+    {
+        col.enabled = false;
+
+        RaycastHit hit;
+
+        if ( Physics.Raycast( pos1, pos2 - pos1, out hit, Vector3.Distance(pos1, pos2) ) && hit.collider.CompareTag("Walls") )
+        {
+            col.enabled = true;
+            Debug.Log("hand collided with wall at position " + hit.point + " with distance of " + Vector3.Distance(pos1, pos2));
+            return hit.point;
+        }
+
+        col.enabled = true;
+        return pos2;
     }
 
     public void SetCursor()
@@ -115,7 +151,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Grab()
     {
-        hand.GetComponent<SphereCollider>().enabled = false;
+        col.enabled = false;
 
         RaycastHit hit;
         if (Physics.Raycast(HandPos(10), hand.transform.TransformDirection(Vector3.down), out hit, 15) && hit.collider.CompareTag("Collectable"))
@@ -124,7 +160,7 @@ public class PlayerManager : MonoBehaviour
             holding.transform.position = hand.transform.position;
         }
 
-        hand.GetComponent<SphereCollider>().enabled = true;
+        col.enabled = true;
     }
 
     public Vector3 HandPos(float offset = 0)

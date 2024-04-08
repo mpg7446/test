@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     [Space(5)]
     public int gameTimer = 0;
     public int highScore;
+    public Texture2D img;
 
     void Start()
     {
@@ -44,6 +45,11 @@ public class GameManager : MonoBehaviour
         player.SetActive(false);
         playerManager = player.GetComponent<PlayerManager>();
         roomGeneration.SetActive(false);
+
+        if (img == null)
+        {
+            // this should close the game / stop on runtime
+        }
     }
 
     void FixedUpdate()

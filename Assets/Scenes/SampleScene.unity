@@ -167,17 +167,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376a4d7050b7c0d49a312c32c35113d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomCount: 9
+  roomCount: -1
   maxLargeRooms: 0
   roomSize: 10
-  genType: 0
-  roomCoordsLength: 3
+  genType: 1
+  cubicLoop: 3
   roomCoords: 000000000000000000
   roomWalls: 
   debug: 1
   debugRoom: {fileID: 1247889492686940840, guid: c0a5f49e48f88764e9beed50be9eb309, type: 3}
-  rooms: []
-  placedRooms: []
+  largeRooms: []
+  mediumRooms: []
+  smallRooms: []
 --- !u!1 &80867227
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +639,7 @@ MonoBehaviour:
   playing: 0
   gameTimer: 0
   highScore: 0
+  img: {fileID: 2800000, guid: 024a6561394fc934cabd05224e1317f0, type: 3}
 --- !u!4 &1071002023
 Transform:
   m_ObjectHideFlags: 0
@@ -815,8 +817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e7c1a7466efae4986a80d0adccfaf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 963194225}
   hand: {fileID: 1209794029}
   sensitivity: 55
   holding: {fileID: 0}
+  cam: {fileID: 963194225}
+  debug: 0
   score: 0
