@@ -72,6 +72,7 @@ public class PlayerManager : MonoBehaviour
             newPosition.x += handPos.x;
             newPosition.z += handPos.z;
             rb.MovePosition(handPos);
+            handPos = rb.position;
         }
 
         cam.transform.position = new Vector3(handPos.x, cam.transform.position.y, handPos.z);
