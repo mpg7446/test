@@ -1,0 +1,73 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class largeRoom : MonoBehaviour
+{
+    private start root;
+    [SerializeField] private List<GameObject> spawners = new List<GameObject>();
+    private void OnEnable()
+    {
+
+        // define root script
+        root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
+        root.placedRooms.Add(gameObject);
+
+        if (root.maxLargeRooms > 0)
+        {
+            // subtract score from max room counters
+            root.maxLargeRooms--;
+            root.roomCount--;
+
+            // continue large room generation
+            foreach (GameObject spawner in spawners)
+            {
+                PlaceRoom(spawner, true);
+            }
+        } 
+        else if (root.roomCount > 0)
+        {
+            root.roomCount--;
+
+            // generate small rooms
+            foreach (GameObject spawner in spawners)
+            {
+                PlaceRoom(spawner, false, 2);
+            }
+        }
+
+    }
+
+    private void PlaceRoom(GameObject spawner, bool largeRoom = false, int chance = 5)
+    {
+        chance = root.RNG(chance);
+        if (chance == 0)
+        {
+            // place room here at game object locations
+            if (largeRoom)
+            {
+                int rand = root.RNG(root.largeRooms.Count);
+                Vector3 dir = spawner.transform.position - transform.position;
+                Vector3 pos = spawner.transform.position;
+
+                if (dir.x > 0)
+                {
+                    pos.x += root.largeRoomSize.x / 2;
+                } else
+                {
+                    pos.x -= root.largeRoomSize.x / 2;
+                }
+                if (dir.z > 0)
+                {
+                    pos.z += root.largeRoomSize.z / 2;
+                }
+                else
+                {
+                    pos.z -= root.largeRoomSize.z / 2;
+                }
+
+                Instantiate(root.largeRooms[rand], pos, Quaternion.identity, transform);
+            }
+        }
+    }
+}

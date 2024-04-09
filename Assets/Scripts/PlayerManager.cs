@@ -18,12 +18,10 @@ public class PlayerManager : MonoBehaviour
     public bool debug;
 
     public int score;
-    Rigidbody rb;
     SphereCollider col;
 
     private void Awake()
     {
-        rb = hand.GetComponent<Rigidbody>();
         col = hand.GetComponent<SphereCollider>();
     }
 
@@ -32,12 +30,12 @@ public class PlayerManager : MonoBehaviour
     {
         SetCursor();
         handPos = hand.transform.position;
+        posUpdate = hand.transform.position;
         holding = gameObject;
     }
 
     void Update()
     {
-        Rigidbody hrb = holding.GetComponent<Rigidbody>();
 
         // clear holding if object has been collected
         if (holding == null)
@@ -45,50 +43,8 @@ public class PlayerManager : MonoBehaviour
             holding = gameObject;
         }
 
-        // apply cursor movement to hand position
-        posUpdate.x += Input.GetAxis("Mouse X") * sensitivity / 100;
-        posUpdate.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
-
-        handPos = WallCollision(handPos, posUpdate);
-
-        // restrict hand from going out of bounds
-        //if (handPos.x > 15)
-        //{
-        //    handPos.x = 15;
-        //}
-        //if (handPos.x < -15)
-        //{
-        //    handPos.x = -15;
-        //}
-        //if (handPos.z > 20)
-        //{
-        //    handPos.z = 20;
-        //}
-        //if (handPos.z < -2)
-        //{
-        //    handPos.z = -2;
-        //}
-
-        // apply hand motion
-        if (holding != gameObject)
-        {
-            // move holding object and hand
-            hrb.MovePosition(handPos);
-            rb.MovePosition(handPos);
-
-            // update handPos with new vector
-            handPos.x = hrb.position.x;
-            handPos.z = hrb.position.z;
-        } else
-        {
-            rb.MovePosition(handPos);
-            handPos = rb.position;
-        }
-
-        if (debug)
-        {
-            cam.transform.position = new Vector3(handPos.x, cam.transform.position.y, handPos.z);
-        }
+        // move hand around
+        Move();
 
         // left click detection
         if (Input.GetMouseButton(0) && holding == gameObject)
@@ -97,8 +53,7 @@ public class PlayerManager : MonoBehaviour
         }
         else if (Input.GetMouseButton(0) && holding != gameObject)
         {
-            // why is rigidbody so buggyyyyyy
-            // please it just causes more and more problems
+            Rigidbody hrb = holding.GetComponent<Rigidbody>();
             throwForce = (handPos - holding.transform.position) * 50;
             hrb.useGravity = false;
 
@@ -109,6 +64,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (holding != null && holding != gameObject)
             {
+                Rigidbody hrb = holding.GetComponent<Rigidbody>();
                 hrb.useGravity = true;
 
                 hrb.AddForce(throwForce, ForceMode.Impulse);
@@ -117,7 +73,7 @@ public class PlayerManager : MonoBehaviour
             holding = gameObject;
 
             // enable hand collisions when not holding
-            Invoke("ThrowCooldown", 1.0f);
+            Invoke("ThrowCooldown", 2.0f);
         }
     }
 
@@ -135,8 +91,7 @@ public class PlayerManager : MonoBehaviour
         if ( Physics.Raycast( pos1, pos2 - pos1, out hit, Vector3.Distance(pos1, pos2) ) && hit.collider.CompareTag("Walls") )
         {
             col.enabled = true;
-            Debug.Log("hand collided with wall at position " + hit.point + " with distance of " + Vector3.Distance(pos1, pos2));
-            return hit.point;
+            return pos1;
         }
 
         col.enabled = true;
@@ -170,6 +125,35 @@ public class PlayerManager : MonoBehaviour
 
     public void Move()
     {
+        // apply cursor movement to hand position
+        posUpdate.x += Input.GetAxis("Mouse X") * sensitivity / 100;
+        posUpdate.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
 
+        handPos = WallCollision(handPos, posUpdate);
+        posUpdate = handPos;
+
+        // apply hand motion
+        if (holding != gameObject)
+        {
+            Rigidbody hrb = holding.GetComponent<Rigidbody>();
+
+            // move holding object and hand
+            hrb.MovePosition(handPos);
+            hand.transform.position = handPos;
+
+            // update handPos with new vector
+            handPos.x = hrb.position.x;
+            handPos.z = hrb.position.z;
+        }
+        else
+        {
+            hand.transform.position = handPos;
+            handPos = hand.transform.position;
+        }
+
+        if (debug)
+        {
+            cam.transform.position = new Vector3(handPos.x, cam.transform.position.y, handPos.z);
+        }
     }
 }

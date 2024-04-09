@@ -16,7 +16,10 @@ public class start : MonoBehaviour
     [Header("Room Settings")]
     public int roomCount = -1;
     [HideInInspector] public int maxLargeRooms;
-    public float roomSize = 10;
+    public float cubicRoomSize = 10;
+    public Vector3 smallRoomSize = new Vector3(10, 0, 5);
+    public Vector3 mediumRoomSize = new Vector3(10, 0, 10);
+    public Vector3 largeRoomSize = new Vector3(10, 0, 20);
 
     [Space(13)]
     public genTypes genType;
@@ -39,7 +42,7 @@ public class start : MonoBehaviour
     public List<GameObject> smallRooms = new List<GameObject>();
 
     // placed rooms for room generation
-    private List<GameObject> placedRooms = new List<GameObject>();
+    [HideInInspector] public List<GameObject> placedRooms = new List<GameObject>();
 
     void OnEnable()
     {
@@ -60,16 +63,18 @@ public class start : MonoBehaviour
         if (genType == genTypes.CUBIC) // cubic room generation
         {
             Debug.Log("roomgen: Starting Cubic Generation");
+
             roomCoords = new bool[cubicLoop * cubicLoop];
             roomWalls = new bool[roomCoords.Length * 4];
             CubicRoomGeneration();
+
             Debug.Log("roomgen: Cubic Generation Complete!");
         } 
         else if (genType == genTypes.DYNAMIC) // dynamic room generation
         {
             Debug.Log("roomgen: Starting Dynamic Generation");
 
-            DynamicRoomGeneration();
+            DynamicRoomGeneration(new Vector3(0, 0, largeRoomSize.x/2));
 
             Debug.Log("goofy ahhh looking rooms generated");
         }
@@ -87,9 +92,8 @@ public class start : MonoBehaviour
     {
         if (debug)
         {
-            GameObject firstRoom = Instantiate(debugRoom, transform.position + offset, Quaternion.identity);
+            GameObject firstRoom = Instantiate(debugRoom, transform.position + offset, Quaternion.identity, transform);
             firstRoom.name = "entry room";
-            firstRoom.transform.SetParent(transform);
 
             placedRooms.Add(firstRoom);
         }
@@ -127,7 +131,7 @@ public class start : MonoBehaviour
         // place rooms
         for (int i = roomCoords.Length - 1; i >= 0; i--)
         {
-            PlaceRoom(roomCoords, i, roomSize, cubicLoop);
+            PlaceRoom(roomCoords, i, cubicRoomSize, cubicLoop);
         }
     }
 
@@ -226,7 +230,7 @@ public class start : MonoBehaviour
 
         if (array[index])
         {
-            GameObject room = Instantiate(debugRoom, coords, Quaternion.identity);
+            GameObject room = Instantiate(debugRoom, coords, Quaternion.identity, transform);
             room.name = "room " + index;
 
             placedRooms.Add(room);
@@ -259,11 +263,11 @@ public class start : MonoBehaviour
     }
 
     // random number generator (so that i dont have to type UnityEngine.Random.Range() every. single. time.
-    private int RNG(int min, int max)
+    public int RNG(int min, int max)
     {
         return UnityEngine.Random.Range(min, max);
     }
-    private int RNG(int max)
+    public int RNG(int max)
     {
         return UnityEngine.Random.Range(0, max);
     }
