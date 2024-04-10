@@ -13,6 +13,16 @@ public class largeRoom : MonoBehaviour
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
         root.placedRooms.Add(gameObject);
 
+        // randomize the order of spawners in list
+        GameObject[] array = spawners.ToArray();
+        for (int i = 0; i < array.Length; i++)
+        {
+            int rand = root.RNG(array.Length);
+            GameObject temp = array[rand];
+            array[rand] = temp;
+            Debug.Log(temp.name + ": moved to array pos " + rand + " from pos " + i);
+        }
+
         if (root.maxLargeRooms > 0)
         {
             // subtract score from max room counters
