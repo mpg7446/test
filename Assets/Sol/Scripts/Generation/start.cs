@@ -81,7 +81,7 @@ public class start : MonoBehaviour
         {
             Debug.Log("roomgen: Starting Dynamic Generation");
 
-            DynamicRoomGeneration(new Vector3(-largeRoomSize.z/4, 0, largeRoomSize.x/2));
+            DynamicRoomGeneration(new Vector3(0, 0, largeRoomSize.x/2));
 
             Debug.Log("goofy ahhh looking rooms generated");
         }
