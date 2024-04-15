@@ -95,10 +95,18 @@ public class largeRoom : MonoBehaviour
             }
 
             // place wall with door
+            if(root.debug)
+            {
+                Instantiate(root.debugDoorWall, spawner.transform, transform);
+            }
 
         } else
         {
             // place blank wall
+            if(root.debug)
+            {
+                Instantiate(root.debugWall, spawner.transform, transform);
+            }
         }
     }
 }

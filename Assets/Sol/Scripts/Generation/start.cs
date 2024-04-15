@@ -36,6 +36,8 @@ public class start : MonoBehaviour
     public GameObject smallDebugRoom;
     public GameObject mediumDebugRoom;
     public GameObject largeDebugRoom;
+    public GameObject debugWall;
+    public GameObject debugDoorWall;
     [Space(13)]
 
     // rooms
@@ -43,6 +45,8 @@ public class start : MonoBehaviour
     public List<GameObject> smallRooms = new List<GameObject>();
     public List<GameObject> mediumRooms = new List<GameObject>();
     public List<GameObject> largeRooms = new List<GameObject>();
+    public List<GameObject> Walls = new List<GameObject>();
+    public List<GameObject> Doors = new List<GameObject>();
 
     // placed rooms for room generation
     [HideInInspector] public List<GameObject> placedRooms = new List<GameObject>();
