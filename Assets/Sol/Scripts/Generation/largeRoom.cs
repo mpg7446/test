@@ -9,6 +9,7 @@ public class largeRoom : MonoBehaviour
     [SerializeField] private List<GameObject> spawners = new List<GameObject>();
     private void OnEnable()
     {
+        Debug.Log("Placed Large Room, Script is runnig!");
 
         // define root script
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
@@ -24,27 +25,20 @@ public class largeRoom : MonoBehaviour
             array[rand] = temp;
             Debug.Log(temp.name + ": moved to array pos " + rand + " from pos " + i);
         }
-
-        if (root.maxLargeRooms > 0)
+        
+        if (root.roomCount > 0)
         {
-            // subtract score from max room counters
-            root.maxLargeRooms--;
-            root.roomCount--;
-
-            // continue large room generation
             foreach (GameObject spawner in spawners)
             {
-                PlaceRoom(spawner, true);
-            }
-        } 
-        else if (root.roomCount > 0)
-        {
-            root.roomCount--;
-
-            // generate small rooms
-            foreach (GameObject spawner in spawners)
-            {
-                PlaceRoom(spawner, false, 2);
+                if (root.maxLargeRooms > 0)
+                {
+                    // generate large rooms
+                    PlaceRoom(spawner, true);
+                } else
+                {
+                    // generate smaller rooms
+                    PlaceRoom(spawner, false, 2);
+                }
             }
         }
 
@@ -55,9 +49,11 @@ public class largeRoom : MonoBehaviour
         chance = root.RNG(chance);
         if (chance == 0)
         {
+            root.roomCount--;
             // place room here at game object locations
             if (largeRoom)
             {
+                root.maxLargeRooms--;
                 int rand = root.RNG(root.largeRooms.Count);
                 Vector3 dir = spawner.transform.position - transform.position;
                 Vector3 pos = spawner.transform.position;

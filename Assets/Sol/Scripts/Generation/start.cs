@@ -101,8 +101,11 @@ public class start : MonoBehaviour
         {
             GameObject firstRoom = Instantiate(largeDebugRoom, transform.position + offset, Quaternion.identity, transform);
             firstRoom.name = "entry room";
-
-            placedRooms.Add(firstRoom);
+        } else
+        {
+            int sel = RNG(largeRooms.Count);
+            GameObject firstRoom = Instantiate(largeRooms[sel], transform.position + offset, Quaternion.identity, transform);
+            firstRoom.name = "entry room";
         }
     }
 

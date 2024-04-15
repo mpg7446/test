@@ -9,6 +9,7 @@ public class mediumRoom : MonoBehaviour
     [SerializeField] private List<GameObject> spawners = new List<GameObject>();
     private void OnEnable()
     {
+        Debug.Log("Placed Medium Room, Script is runnig!");
 
         // define root script
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
@@ -27,8 +28,6 @@ public class mediumRoom : MonoBehaviour
         
         if (root.roomCount > 0)
         {
-            root.roomCount--;
-
             // generate small rooms
             foreach (GameObject spawner in spawners)
             {
@@ -43,6 +42,7 @@ public class mediumRoom : MonoBehaviour
         chance = root.RNG(chance);
         if (chance == 0)
         {
+            root.roomCount--;
             // place medium / small room here
             chance = root.RNG(5);
             if (chance == 0)
