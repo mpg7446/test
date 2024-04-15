@@ -17,15 +17,15 @@ public class largeRoom : MonoBehaviour
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
         root.placedRooms.Add(gameObject);
 
-        // randomize the order of spawners in list
+        // randomize the order of spawners in list - PLEASE FIX THIS - TODO
         GameObject[] array = spawners.ToArray();
-        spawners.Clear();
+        //spawners.Clear();
         for (int i = 0; i < array.Length; i++)
         {
             int rand = root.RNG(array.Length);
             GameObject temp = array[rand];
             array[rand] = temp;
-            Debug.Log(temp.name + ": moved to array pos " + rand + " from pos " + i);
+            //Debug.Log(temp.name + ": moved to array pos " + rand + " from pos " + i);
         }
         
         if (root.roomCount > 0)
@@ -93,16 +93,18 @@ public class largeRoom : MonoBehaviour
                 if (chance == 0)
                 {
                     // place small room
+                    if (debug)
+                    {
+                        Instantiate(root.smallDebugRoom, Vector3.zero, Quaternion.identity, spawner.transform);
+                    }
                 } else
                 {
                     // place medium room
+                    if (debug)
+                    {
+                        Instantiate(root.mediumDebugRoom, Vector3.zero, Quaternion.identity, spawner.transform);
+                    }
                 }
-            }
-
-            // place wall with door
-            if(root.debug)
-            {
-                Instantiate(root.debugDoorWall, spawner.transform, transform);
             }
 
         } else
@@ -110,8 +112,9 @@ public class largeRoom : MonoBehaviour
             // place blank wall
             if(root.debug)
             {
-                Instantiate(root.debugWall, spawner.transform, transform);
+                Instantiate(root.debugWall, spawner.transform.localPosition + new Vector3(), spawner.transform.localRotation, spawner.transform);
             }
         }
+        //Destroy(spawner);
     }
 }
