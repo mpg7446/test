@@ -46,7 +46,7 @@ public class largeRoom : MonoBehaviour
 
     }
 
-    private void PlaceRoom(GameObject spawner, bool largeRoom = false, bool debug = false, int chance = 2)
+    private void PlaceRoom(GameObject spawner, bool largeRoom = false, bool debug = false, int chance = 2) // TODO please make wall placements seperate to room count, move room count check into PlaceRoom function
     {
         chance = root.RNG(chance);
         bool bounding = spawner.transform.position.z > 0 && spawner.transform.position.z <= 20
