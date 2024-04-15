@@ -49,7 +49,7 @@ public class start : MonoBehaviour
     public List<GameObject> Doors = new List<GameObject>();
 
     // placed rooms for room generation
-    [HideInInspector] public List<GameObject> placedRooms = new List<GameObject>();
+     public List<GameObject> placedRooms = new List<GameObject>();
 
     void OnEnable()
     {
@@ -257,6 +257,7 @@ public class start : MonoBehaviour
                 Destroy(room);
             }
             placedRooms.Clear();
+            Debug.Log("rooms cleared!");
         }
     }
 

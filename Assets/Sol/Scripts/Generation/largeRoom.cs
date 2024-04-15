@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class largeRoom : MonoBehaviour
 {
@@ -33,18 +35,18 @@ public class largeRoom : MonoBehaviour
                 if (root.maxLargeRooms > 0)
                 {
                     // generate large rooms
-                    PlaceRoom(spawner, true);
+                    PlaceRoom(spawner, true, root.debug);
                 } else
                 {
                     // generate smaller rooms
-                    PlaceRoom(spawner, false, 2);
+                    PlaceRoom(spawner, false, root.debug);
                 }
             }
         }
 
     }
 
-    private void PlaceRoom(GameObject spawner, bool largeRoom = false, int chance = 5)
+    private void PlaceRoom(GameObject spawner, bool largeRoom = false, bool debug = false, int chance = 2)
     {
         chance = root.RNG(chance);
         if (chance == 0)
@@ -75,7 +77,14 @@ public class largeRoom : MonoBehaviour
                     pos.z -= root.largeRoomSize.z / 2;
                 }
 
-                Instantiate(root.largeRooms[rand], pos, Quaternion.identity, transform);
+                if (debug)
+                {
+                    Instantiate(root.largeDebugRoom, pos, Quaternion.identity, transform);
+                }
+                else
+                {
+                    Instantiate(root.largeRooms[rand], pos, Quaternion.identity, transform);
+                }
             }
             else
             {
