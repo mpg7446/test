@@ -1,39 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 public class largeRoom : MonoBehaviour
 {
-    private Vector3 roomSize;
     private start root;
     [SerializeField] private List<GameObject> spawners = new List<GameObject>();
     private void OnEnable()
     {
-        Debug.Log("Placed Large Room, Script is runnig!");
+        Debug.Log("Placed Large Room, Script is running!");
 
         // define root script
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
         root.placedRooms.Add(gameObject);
 
-        // randomize the order of spawners in list - PLEASE FIX THIS - TODO
-        GameObject[] array = spawners.ToArray();
-        //spawners.Clear();
-        for (int i = 0; i < array.Length; i++)
+        // randomize the order of spawners in list
+        for (int i = spawners.Count - 1; i >= 0; i--)
         {
-            int rand = root.RNG(array.Length);
-            GameObject temp = array[rand];
-            array[rand] = temp;
-            //Debug.Log(temp.name + ": moved to array pos " + rand + " from pos " + i);
+            int rand = root.RNG(i + 1);
+            GameObject temp = spawners[rand];
+            spawners[rand] = spawners[i];
+            spawners[i] = temp;
         }
 
         foreach (GameObject spawner in spawners)
         {
-            if (root.maxLargeRooms > 0)
+            int chance = root.RNG(2);
+            if (root.maxLargeRooms > 0 && chance == 0)
             {
                 // generate large rooms
-                PlaceRoom(spawner, true, root.debug);
+                PlaceRoom(spawner, true, root.debug, root.largeRoomChance);
             }
             else
             {
@@ -72,7 +72,7 @@ public class largeRoom : MonoBehaviour
             else
             {
                 // place medium / small room here
-                chance = root.RNG(5);
+                chance = root.RNG(root.roomChance);
                 if (chance == 0)
                 {
                     int rand = root.RNG(root.smallRooms.Count);
@@ -113,4 +113,5 @@ public class largeRoom : MonoBehaviour
         }
         //Destroy(spawner);
     }
+
 }

@@ -138,7 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5383382515637331852}
-  - component: {fileID: 2040835374464594578}
+  - component: {fileID: 1199206400080166838}
   m_Layer: 0
   m_Name: medium debug room
   m_TagString: Untagged
@@ -168,7 +168,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2040835374464594578
+--- !u!114 &1199206400080166838
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1247889492686940840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afb305642b9c7b44ca32ee71c72e7a36, type: 3}
+  m_Script: {fileID: 11500000, guid: 985e2054b1e6df342b461221eabb7dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:

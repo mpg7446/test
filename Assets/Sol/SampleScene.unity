@@ -169,6 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomCount: -1
   maxLargeRooms: 0
+  maxRooms: 20
+  roomChance: 1
+  largeRoomChance: 2
   cubicRoomSize: 10
   smallRoomSize: {x: 10, y: 0, z: 5}
   mediumRoomSize: {x: 10, y: 0, z: 10}

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mediumRoom : MonoBehaviour
+public class room : MonoBehaviour
 {
     private start root;
     [SerializeField] private List<GameObject> spawners = new List<GameObject>();
     private void OnEnable()
     {
-        Debug.Log("Placed Medium Room, Script is running!");
+        Debug.Log("Placed Room, Script is running!");
 
         // define root script
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
@@ -23,15 +23,23 @@ public class mediumRoom : MonoBehaviour
             spawners[i] = temp;
         }
 
-        // generate small rooms
         foreach (GameObject spawner in spawners)
         {
-            PlaceRoom(spawner, root.debug, root.roomChance);
+            int chance = root.RNG(2);
+            if (root.maxLargeRooms > 0 && chance == 0)
+            {
+                // generate large rooms
+                PlaceRoom(spawner, true, root.debug, root.largeRoomChance);
+            }
+            else
+            {
+                // generate smaller rooms
+                PlaceRoom(spawner, false, root.debug);
+            }
         }
-
     }
 
-    private void PlaceRoom(GameObject spawner, bool debug = false,int chance = 5)
+    private void PlaceRoom(GameObject spawner, bool largeRoom = false, bool debug = false, int chance = 2) // TODO if possible, stop wall doubling from rooms spawning next to each other
     {
         chance = root.RNG(chance);
         bool bounding = spawner.transform.position.z > 0 && spawner.transform.position.z <= 20
@@ -43,32 +51,49 @@ public class mediumRoom : MonoBehaviour
             // place room here at game object locations
 
             GameObject roomToPlace;
-            // place medium / small room here
-            chance = root.RNG(2);
-            if (chance == 0)
+            if (largeRoom && spawner.transform.position.z > 5)
             {
-                int rand = root.RNG(root.smallRooms.Count);
-                // place small room
+                root.maxLargeRooms--;
+                int rand = root.RNG(root.largeRooms.Count);
+
                 if (debug)
                 {
-                    roomToPlace = root.smallDebugRoom;
+                    roomToPlace = root.largeDebugRoom;
                 }
                 else
                 {
-                    roomToPlace = root.smallRooms[rand];
+                    roomToPlace = root.largeRooms[rand];
                 }
             }
             else
             {
-                int rand = root.RNG(root.mediumRooms.Count);
-                // place medium room
-                if (debug)
+                // place medium / small room here
+                chance = root.RNG(root.roomChance);
+                if (chance == 0)
                 {
-                    roomToPlace = root.mediumDebugRoom;
+                    int rand = root.RNG(root.smallRooms.Count);
+                    // place small room
+                    if (debug)
+                    {
+                        roomToPlace = root.smallDebugRoom;
+                    }
+                    else
+                    {
+                        roomToPlace = root.smallRooms[rand];
+                    }
                 }
                 else
                 {
-                    roomToPlace = root.mediumRooms[rand];
+                    int rand = root.RNG(root.mediumRooms.Count);
+                    // place medium room
+                    if (debug)
+                    {
+                        roomToPlace = root.mediumDebugRoom;
+                    }
+                    else
+                    {
+                        roomToPlace = root.mediumRooms[rand];
+                    }
                 }
             }
 
@@ -85,5 +110,7 @@ public class mediumRoom : MonoBehaviour
                 wall.transform.localPosition = Vector3.zero;
             }
         }
+        //Destroy(spawner);
     }
+
 }

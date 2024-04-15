@@ -16,6 +16,11 @@ public class start : MonoBehaviour
     [Header("Room Settings")]
     public int roomCount = -1;
     [HideInInspector] public int maxLargeRooms;
+    [SerializeField] private int maxRooms = 9;
+    public int roomChance = 5;
+    public int largeRoomChance = 2;
+    [Space(13)]
+
     public float cubicRoomSize = 10;
     public Vector3 smallRoomSize = new Vector3(10, 0, 5);
     public Vector3 mediumRoomSize = new Vector3(10, 0, 10);
@@ -59,8 +64,8 @@ public class start : MonoBehaviour
         // initiate room generation settings
         if (roomCount == -1)
         {
-            roomCount = RNG(1, 9);
-            maxLargeRooms = RNG(roomCount);
+            roomCount = RNG(1, maxRooms);
+            maxLargeRooms = RNG(roomCount - 1);
 
             Debug.Log("Room generation:\n Room Count: " + roomCount
                 + "\n Max Large Rooms: " + maxLargeRooms);
@@ -95,18 +100,43 @@ public class start : MonoBehaviour
         DestroyRooms();
     }
 
-    private void DynamicRoomGeneration(Vector3 offset = new Vector3())
+    private void DynamicRoomGeneration(Vector3 offset = new Vector3()) // TODO possibly merge large and medium roomgen to allow for large rooms to spawn off of medium rooms??
     {
-        if (debug)
+        int chance = RNG(2);
+        GameObject firstRoom;
+        if (chance == 0)
         {
-            GameObject firstRoom = Instantiate(largeDebugRoom, transform.position + offset, Quaternion.identity, transform);
-            firstRoom.name = "entry room";
+            if (debug)
+            {
+                firstRoom = largeDebugRoom;
+            } else
+            {
+                int sel = RNG(largeRooms.Count);
+                firstRoom = largeRooms[sel];
+            }
+        } else if (chance == 1)
+        {
+            if (debug)
+            {
+                firstRoom = mediumDebugRoom;
+            } else
+            {
+                int sel = RNG(mediumRooms.Count);
+                firstRoom = mediumRooms[sel];
+            }
         } else
         {
-            int sel = RNG(largeRooms.Count);
-            GameObject firstRoom = Instantiate(largeRooms[sel], transform.position + offset, Quaternion.identity, transform);
-            firstRoom.name = "entry room";
+            if (debug)
+            {
+                firstRoom = smallDebugRoom;
+            } else
+            {
+                int sel = RNG(smallRooms.Count);
+                firstRoom = smallRooms[sel];
+            }
         }
+        firstRoom = Instantiate(firstRoom, transform.position + offset, Quaternion.identity, transform);
+        firstRoom.name = "entry room";
     }
 
     // cubic room generation on a 3x3 grid
