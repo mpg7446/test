@@ -49,13 +49,16 @@ public class largeRoom : MonoBehaviour
     private void PlaceRoom(GameObject spawner, bool largeRoom = false, bool debug = false, int chance = 2)
     {
         chance = root.RNG(chance);
-        if (chance == 0)
+        bool bounding = spawner.transform.position.z > 0 && spawner.transform.position.z <= 20
+            && spawner.transform.position.x >= -15 && spawner.transform.position.x <= 15;
+        Debug.Log(spawner.name + " bounding: " + bounding);
+        if (chance == 0 && bounding)
         {
             root.roomCount--;
             // place room here at game object locations
 
             GameObject roomToPlace;
-            if (largeRoom)
+            if (largeRoom && spawner.transform.position.z > 5)
             {
                 root.maxLargeRooms--;
                 int rand = root.RNG(root.largeRooms.Count);
@@ -99,7 +102,8 @@ public class largeRoom : MonoBehaviour
                 }
             }
 
-            Instantiate(roomToPlace, Vector3.zero, new Quaternion(), spawner.transform);
+            GameObject room = Instantiate(roomToPlace, Vector3.zero, new Quaternion(), spawner.transform);
+            room.transform.localPosition = Vector3.zero;
 
         } else
         {
