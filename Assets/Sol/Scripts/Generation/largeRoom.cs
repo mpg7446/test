@@ -53,37 +53,20 @@ public class largeRoom : MonoBehaviour
         {
             root.roomCount--;
             // place room here at game object locations
+
+            GameObject roomToPlace;
             if (largeRoom)
             {
                 root.maxLargeRooms--;
                 int rand = root.RNG(root.largeRooms.Count);
-                Vector3 dir = spawner.transform.position - transform.position;
-                Vector3 pos = spawner.transform.position;
-
-                if (dir.x > 0)
-                {
-                    pos.x += root.largeRoomSize.x / 2;
-                }
-                else
-                {
-                    pos.x -= root.largeRoomSize.x / 2;
-                }
-                if (dir.z > 0)
-                {
-                    pos.z += root.largeRoomSize.z / 2;
-                }
-                else
-                {
-                    pos.z -= root.largeRoomSize.z / 2;
-                }
 
                 if (debug)
                 {
-                    Instantiate(root.largeDebugRoom, pos, Quaternion.identity, transform);
+                    roomToPlace = root.largeDebugRoom;
                 }
                 else
                 {
-                    Instantiate(root.largeRooms[rand], pos, Quaternion.identity, transform);
+                    roomToPlace = root.largeRooms[rand];
                 }
             }
             else
@@ -92,27 +75,39 @@ public class largeRoom : MonoBehaviour
                 chance = root.RNG(5);
                 if (chance == 0)
                 {
+                    int rand = root.RNG(root.smallRooms.Count);
                     // place small room
                     if (debug)
                     {
-                        Instantiate(root.smallDebugRoom, Vector3.zero, Quaternion.identity, spawner.transform);
+                        roomToPlace = root.smallDebugRoom;
+                    } else
+                    {
+                        roomToPlace = root.smallRooms[rand];
                     }
-                } else
+                } 
+                else
                 {
+                    int rand = root.RNG(root.mediumRooms.Count);
                     // place medium room
                     if (debug)
                     {
-                        Instantiate(root.mediumDebugRoom, Vector3.zero, Quaternion.identity, spawner.transform);
+                        roomToPlace = root.mediumDebugRoom;  
+                    } else
+                    {
+                        roomToPlace = root.mediumRooms[rand];
                     }
                 }
             }
+
+            Instantiate(roomToPlace, Vector3.zero, new Quaternion(), spawner.transform);
 
         } else
         {
             // place blank wall
             if(root.debug)
             {
-                Instantiate(root.debugWall, spawner.transform.localPosition + new Vector3(), spawner.transform.localRotation, spawner.transform);
+                GameObject wall = Instantiate(root.debugWall, Vector3.zero, new Quaternion(), spawner.transform);
+                wall.transform.localPosition = Vector3.zero;
             }
         }
         //Destroy(spawner);
