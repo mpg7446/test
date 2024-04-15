@@ -27,32 +27,29 @@ public class largeRoom : MonoBehaviour
             array[rand] = temp;
             //Debug.Log(temp.name + ": moved to array pos " + rand + " from pos " + i);
         }
-        
-        if (root.roomCount > 0)
+
+        foreach (GameObject spawner in spawners)
         {
-            foreach (GameObject spawner in spawners)
+            if (root.maxLargeRooms > 0)
             {
-                if (root.maxLargeRooms > 0)
-                {
-                    // generate large rooms
-                    PlaceRoom(spawner, true, root.debug);
-                } else
-                {
-                    // generate smaller rooms
-                    PlaceRoom(spawner, false, root.debug);
-                }
+                // generate large rooms
+                PlaceRoom(spawner, true, root.debug);
+            }
+            else
+            {
+                // generate smaller rooms
+                PlaceRoom(spawner, false, root.debug);
             }
         }
-
     }
 
-    private void PlaceRoom(GameObject spawner, bool largeRoom = false, bool debug = false, int chance = 2) // TODO please make wall placements seperate to room count, move room count check into PlaceRoom function
+    private void PlaceRoom(GameObject spawner, bool largeRoom = false, bool debug = false, int chance = 2) // TODO if possible, stop wall doubling from rooms spawning next to each other
     {
         chance = root.RNG(chance);
         bool bounding = spawner.transform.position.z > 0 && spawner.transform.position.z <= 20
             && spawner.transform.position.x >= -15 && spawner.transform.position.x <= 15;
-        Debug.Log(spawner.name + " bounding: " + bounding);
-        if (chance == 0 && bounding)
+
+        if (root.roomCount > 0 && chance == 0 && bounding)
         {
             root.roomCount--;
             // place room here at game object locations

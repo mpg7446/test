@@ -15,7 +15,7 @@ public class mediumRoom : MonoBehaviour
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
         root.placedRooms.Add(gameObject);
 
-        // randomize the order of spawners in list
+        // randomize the order of spawners in list - PLEASE FIX THIS - TODO
         GameObject[] array = spawners.ToArray();
         //spawners.Clear();
         for (int i = 0; i < array.Length; i++)
@@ -25,14 +25,11 @@ public class mediumRoom : MonoBehaviour
             array[rand] = temp;
             //Debug.Log(temp.name + ": moved to array pos " + rand + " from pos " + i);
         }
-        
-        if (root.roomCount > 0)
+
+        // generate small rooms
+        foreach (GameObject spawner in spawners)
         {
-            // generate small rooms
-            foreach (GameObject spawner in spawners)
-            {
-                PlaceRoom(spawner, root.debug, 2);
-            }
+            PlaceRoom(spawner, root.debug, 2);
         }
 
     }
@@ -42,8 +39,8 @@ public class mediumRoom : MonoBehaviour
         chance = root.RNG(chance);
         bool bounding = spawner.transform.position.z > 0 && spawner.transform.position.z <= 20
             && spawner.transform.position.x >= -15 && spawner.transform.position.x <= 15;
-        Debug.Log(spawner.name + " bounding: " + bounding);
-        if (chance == 0 && bounding)
+
+        if (root.roomCount > 0 && chance == 0 && bounding)
         {
             root.roomCount--;
             // place room here at game object locations
