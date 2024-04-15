@@ -396,6 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5383382515637331852}
+  - component: {fileID: 7918412029602280243}
   m_Layer: 0
   m_Name: large debug room
   m_TagString: Untagged
@@ -426,6 +427,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7918412029602280243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247889492686940840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb94f6bf3fb21244b5554d94ec5881c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawners:
+  - {fileID: 1845186115342946518}
+  - {fileID: 8711294836376260572}
+  - {fileID: 8730954800410091229}
+  - {fileID: 3173948783605090889}
+  - {fileID: 8437999204463188237}
+  - {fileID: 5497241612796736040}
 --- !u!1 &1816549269362290007
 GameObject:
   m_ObjectHideFlags: 0

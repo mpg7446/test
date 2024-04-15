@@ -32,14 +32,17 @@ public class start : MonoBehaviour
     // debug
     [Header("Debug")]
     public bool debug;
-    public GameObject debugRoom;
+    public GameObject cubicDebugRoom;
+    public GameObject smallDebugRoom;
+    public GameObject mediumDebugRoom;
+    public GameObject largeDebugRoom;
     [Space(13)]
 
     // rooms
     [Header("Rooms")]
-    public List<GameObject> largeRooms = new List<GameObject>();
-    public List<GameObject> mediumRooms = new List<GameObject>();
     public List<GameObject> smallRooms = new List<GameObject>();
+    public List<GameObject> mediumRooms = new List<GameObject>();
+    public List<GameObject> largeRooms = new List<GameObject>();
 
     // placed rooms for room generation
     [HideInInspector] public List<GameObject> placedRooms = new List<GameObject>();
@@ -74,7 +77,7 @@ public class start : MonoBehaviour
         {
             Debug.Log("roomgen: Starting Dynamic Generation");
 
-            DynamicRoomGeneration(new Vector3(0, 0, largeRoomSize.x/2));
+            DynamicRoomGeneration(new Vector3(-largeRoomSize.z/4, 0, largeRoomSize.x/2));
 
             Debug.Log("goofy ahhh looking rooms generated");
         }
@@ -92,7 +95,7 @@ public class start : MonoBehaviour
     {
         if (debug)
         {
-            GameObject firstRoom = Instantiate(debugRoom, transform.position + offset, Quaternion.identity, transform);
+            GameObject firstRoom = Instantiate(largeDebugRoom, transform.position + offset, Quaternion.identity, transform);
             firstRoom.name = "entry room";
 
             placedRooms.Add(firstRoom);
@@ -230,7 +233,7 @@ public class start : MonoBehaviour
 
         if (array[index])
         {
-            GameObject room = Instantiate(debugRoom, coords, Quaternion.identity, transform);
+            GameObject room = Instantiate(cubicDebugRoom, coords, Quaternion.identity, transform);
             room.name = "room " + index;
 
             placedRooms.Add(room);

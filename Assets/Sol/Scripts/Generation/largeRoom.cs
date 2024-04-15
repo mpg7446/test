@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class largeRoom : MonoBehaviour
 {
+    private Vector3 roomSize;
     private start root;
     [SerializeField] private List<GameObject> spawners = new List<GameObject>();
     private void OnEnable()
@@ -15,6 +16,7 @@ public class largeRoom : MonoBehaviour
 
         // randomize the order of spawners in list
         GameObject[] array = spawners.ToArray();
+        spawners.Clear();
         for (int i = 0; i < array.Length; i++)
         {
             int rand = root.RNG(array.Length);
@@ -63,7 +65,8 @@ public class largeRoom : MonoBehaviour
                 if (dir.x > 0)
                 {
                     pos.x += root.largeRoomSize.x / 2;
-                } else
+                }
+                else
                 {
                     pos.x -= root.largeRoomSize.x / 2;
                 }
@@ -78,6 +81,24 @@ public class largeRoom : MonoBehaviour
 
                 Instantiate(root.largeRooms[rand], pos, Quaternion.identity, transform);
             }
+            else
+            {
+                // place medium / small room here
+                chance = root.RNG(5);
+                if (chance == 0)
+                {
+                    // place small room
+                } else
+                {
+                    // place medium room
+                }
+            }
+
+            // place wall with door
+
+        } else
+        {
+            // place blank wall
         }
     }
 }
