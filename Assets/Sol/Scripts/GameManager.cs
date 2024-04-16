@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         player.SetActive(true);
         playerManager.score = 0;
 
-        gameTimer = 600000;
+        gameTimer = 500;
         startGame = false;
         playing = true;
 

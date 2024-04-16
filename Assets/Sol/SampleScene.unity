@@ -405,9 +405,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 737447057}
   sensitivity: 55
+  handStartPos: {x: 0, y: 1, z: -0.6}
   holding: {fileID: 0}
   cam: {fileID: 922107612}
-  debug: 0
+  debug: 1
   score: 0
 --- !u!4 &1201186389
 Transform:
@@ -844,7 +845,7 @@ MonoBehaviour:
   settingsRot: {x: 0, y: 0, z: 0}
   custPos: {x: 0, y: 0, z: 0}
   custRot: {x: 0, y: 0, z: 0}
-  playingPos: {x: 0, y: 13, z: 3.33}
+  playingPos: {x: 0, y: 20, z: 6.96}
   playingRot: {x: 90, y: 0, z: 0}
   player: {fileID: 1201186387}
   roomGeneration: {fileID: 519232642}

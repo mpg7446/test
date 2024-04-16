@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
@@ -10,9 +11,11 @@ public class PlayerManager : MonoBehaviour
     public GameObject hand;
     public float sensitivity = 10;
     private Vector3 handPos = Vector3.zero;
+    [SerializeField] private Vector3 handStartPos = Vector3.zero;
     private Vector3 posUpdate = Vector3.zero;
     public GameObject holding;
     private Vector3 throwForce;
+    private bool movementCooldown;
 
     public GameObject cam;
     public bool debug;
@@ -28,13 +31,20 @@ public class PlayerManager : MonoBehaviour
     // set cursor and hand settings on game begin
     private void OnEnable()
     {
-        SetCursor();
-        handPos = hand.transform.position;
-        posUpdate = hand.transform.position;
+        EnableHand();
+        handPos = hand.transform.localPosition;
+        posUpdate = hand.transform.localPosition;
         holding = gameObject;
+        movementCooldown = true;
+        Invoke("MovementCooldown", 0.4f);
+    }
+    // return cursor to regular state when game ends
+    private void OnDisable()
+    {
+        DisableHand();
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         // clear holding if object has been collected
@@ -82,6 +92,11 @@ public class PlayerManager : MonoBehaviour
         col.enabled = true;
     }
 
+    void MovementCooldown()
+    {
+        movementCooldown = false;
+    }
+
     private Vector3 WallCollision(Vector3 pos1, Vector3 pos2)
     {
         col.enabled = false;
@@ -98,10 +113,27 @@ public class PlayerManager : MonoBehaviour
         return pos2;
     }
 
-    public void SetCursor()
+    [DllImport("user32.dll")]
+    static extern bool SetCursorPos(int X, int Y);
+
+    private void EnableHand()
     {
+        // cursor
         UnityEngine.Cursor.visible = false;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+
+        SetCursorPos((Screen.width / 2) + Screen.mainWindowPosition.x, (Screen.height / 2) + Screen.mainWindowPosition.y);
+
+        //hand object
+        hand.transform.localPosition = handStartPos;
+    }
+
+    private void DisableHand()
+    {
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+
+        SetCursorPos((Screen.width / 2) + Screen.mainWindowPosition.x, (Screen.height / 2) + Screen.mainWindowPosition.y);
     }
 
     public void Grab()
@@ -126,11 +158,16 @@ public class PlayerManager : MonoBehaviour
     public void Move()
     {
         // apply cursor movement to hand position
-        posUpdate.x += Input.GetAxis("Mouse X") * sensitivity / 100;
-        posUpdate.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
+        if (!movementCooldown)
+        {
+            posUpdate.x += Input.GetAxis("Mouse X") * sensitivity / 100;
+            posUpdate.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
 
-        handPos = WallCollision(handPos, posUpdate);
-        posUpdate = handPos;
+            Debug.Log(Input.GetAxis("Mouse X") + " | " + Input.GetAxis("Mouse Y"));
+
+            handPos = WallCollision(handPos, posUpdate);
+            posUpdate = handPos;
+        }
 
         // apply hand motion
         if (holding != gameObject)
