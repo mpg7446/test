@@ -23,18 +23,22 @@ public class room : MonoBehaviour
             spawners[i] = temp;
         }
 
+        // place rooms on spawners
         foreach (GameObject spawner in spawners)
         {
-            int chance = root.RNG(2);
-            if (root.maxLargeRooms > 0 && chance == 0)
+            if (CheckEmpty(spawner))
             {
-                // generate large rooms
-                PlaceRoom(spawner, true, root.debug, root.largeRoomChance);
-            }
-            else
-            {
-                // generate smaller rooms
-                PlaceRoom(spawner, false, root.debug);
+                int chance = root.RNG(2);
+                if (root.maxLargeRooms > 0 && chance == 0)
+                {
+                    // generate large rooms
+                    PlaceRoom(spawner, true, root.debug, root.largeRoomChance);
+                }
+                else
+                {
+                    // generate smaller rooms
+                    PlaceRoom(spawner, false, root.debug);
+                }
             }
         }
     }
@@ -111,6 +115,38 @@ public class room : MonoBehaviour
             }
         }
         //Destroy(spawner);
+    }
+
+    private bool CheckEmpty(GameObject spawner, bool largeRoom = false)
+    {
+        if (largeRoom) // currently not in use
+        {
+            // check adjacent areas for placed rooms too
+        }
+
+        GameObject blocked = null;
+
+        GameObject[] blockers;
+        blockers = GameObject.FindGameObjectsWithTag("spawned");
+        Debug.Log("found " + blockers.Length + " blockers");
+
+        for (int i = 0; i < blockers.Length; i++)
+        {
+            if (Vector3.Distance(spawner.transform.position, blockers[i].transform.position) <= 0.01)
+            {
+                blocked = blockers[i];
+                Debug.Log("blocker " + i + " is intersecting with spawner");
+            } else
+            {
+                Debug.Log("blocker " + i + " does not intersect with spawner");
+            }
+        }
+
+        if (blocked != null)
+        {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -163,8 +163,6 @@ public class PlayerManager : MonoBehaviour
             posUpdate.x += Input.GetAxis("Mouse X") * sensitivity / 100;
             posUpdate.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
 
-            Debug.Log(Input.GetAxis("Mouse X") + " | " + Input.GetAxis("Mouse Y"));
-
             handPos = WallCollision(handPos, posUpdate);
             posUpdate = handPos;
         }
