@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 541bc1cefd09f7a4bb3230e1a108e49f
+guid: f339ef9991132584ba544abd1e969bea
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: AppleMat
-    second: {fileID: 2100000, guid: cfc1e47a0cc64784eb67f31f7d5c7db3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Apple_StemMat
-    second: {fileID: 2100000, guid: cfc1e47a0cc64784eb67f31f7d5c7db3, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Apple_leafMat
-    second: {fileID: 2100000, guid: cfc1e47a0cc64784eb67f31f7d5c7db3, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
