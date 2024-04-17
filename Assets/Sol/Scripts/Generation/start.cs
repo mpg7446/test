@@ -19,6 +19,7 @@ public class start : MonoBehaviour
     [SerializeField] private int maxRooms = 9;
     public int roomChance = 5;
     public int largeRoomChance = 2;
+    [HideInInspector] public int roomID = 0;
     [Space(13)]
 
     public float cubicRoomSize = 10;
@@ -135,7 +136,6 @@ public class start : MonoBehaviour
             }
         }
         firstRoom = Instantiate(firstRoom, transform.position + offset, Quaternion.identity, transform);
-        firstRoom.name = "entry room";
     }
 
     // cubic room generation on a 3x3 grid
@@ -286,6 +286,7 @@ public class start : MonoBehaviour
                 Destroy(room);
             }
             placedRooms.Clear();
+            roomID = 0;
             Debug.Log("rooms cleared!");
         }
     }

@@ -9,11 +9,15 @@ public class room : MonoBehaviour
     [SerializeField] private List<GameObject> spawners = new List<GameObject>();
     private void OnEnable()
     {
-        Debug.Log("Placed Room, Script is running!");
-
         // define root script
         root = GameObject.FindGameObjectWithTag("root").GetComponent<start>();
         root.placedRooms.Add(gameObject);
+
+        // set name and update roomID
+        gameObject.name = "room " + root.roomID;
+        root.roomID++;
+
+        Debug.Log("Placed Room " + gameObject.name + ".");
 
         // randomize the order of spawners in list
         for (int i = spawners.Count - 1; i >= 0; i--)
@@ -33,7 +37,7 @@ public class room : MonoBehaviour
                 // generate large rooms
                 PlaceRoom(spawner, true, root.debug, root.largeRoomChance);
             }
-            else if (CheckEmpty(spawner))
+            else if (CheckEmpty(spawner, false))
             {
                 // generate smaller rooms
                 PlaceRoom(spawner, false, root.debug);
@@ -49,8 +53,8 @@ public class room : MonoBehaviour
 
         if (root.roomCount > 0 && chance == 0 && bounding)
         {
+            // reduce roomCount and increase roomID
             root.roomCount--;
-            // place room here at game object locations
 
             GameObject roomToPlace;
             if (largeRoom && spawner.transform.position.z > 5)
@@ -69,12 +73,12 @@ public class room : MonoBehaviour
             }
             else
             {
-                // place medium / small room here
+                // set medium / small room here
                 chance = root.RNG(root.roomChance);
                 if (chance == 0)
                 {
                     int rand = root.RNG(root.smallRooms.Count);
-                    // place small room
+                    // set small room
                     if (debug)
                     {
                         roomToPlace = root.smallDebugRoom;
@@ -87,7 +91,7 @@ public class room : MonoBehaviour
                 else
                 {
                     int rand = root.RNG(root.mediumRooms.Count);
-                    // place medium room
+                    // set medium room
                     if (debug)
                     {
                         roomToPlace = root.mediumDebugRoom;
@@ -99,8 +103,9 @@ public class room : MonoBehaviour
                 }
             }
 
+            // final place room
             GameObject room = Instantiate(roomToPlace, Vector3.zero, new Quaternion(), spawner.transform);
-            room.transform.localPosition = Vector3.zero;
+            room.transform.localPosition = Vector3.zero; // reset local position due to annoying instantiate stuff
 
         }
         else
@@ -117,14 +122,17 @@ public class room : MonoBehaviour
                 wall.transform.localPosition = Vector3.zero;
             }
         }
-        //Destroy(spawner);
     }
 
     private bool CheckEmpty(GameObject spawner, bool largeRoom = false)
     {
-        Vector3 loc = spawner.transform.position;
+        GameObject[] blockers;
+        blockers = GameObject.FindGameObjectsWithTag("spawned");
+
+        // if spawner is trying to spawn a large room, check to see if the space next to it (where the large room will be occupying) is empty too
         if (largeRoom) 
         {
+            Vector3 loc = spawner.transform.position;
             float rotation = spawner.transform.rotation.y;
 
             switch (rotation)
@@ -142,22 +150,25 @@ public class room : MonoBehaviour
                     loc.z += 10;
                     break;
             }
+
+            // check distance from next spawn location for large room
+            for (int i = 0; i < blockers.Length; i++)
+            {
+                if (Vector3.Distance(loc, blockers[i].transform.position) <= 1)
+                {
+                    Debug.Log("blocker " + i + " is intersecting with " + gameObject.name + spawner.name + ". blocker is " + Vector3.Distance(loc, blockers[i].transform.position) + " units away for large room");
+                    return false;
+                }
+            }
         }
 
-
-        GameObject[] blockers;
-        blockers = GameObject.FindGameObjectsWithTag("spawned");
-        Debug.Log("found " + blockers.Length + " blockers");
-
+        // check distance from spawner and each blocker
         for (int i = 0; i < blockers.Length; i++)
         {
-            if (Vector3.Distance(loc, blockers[i].transform.position) <= 1)
+            if (Vector3.Distance(spawner.transform.position, blockers[i].transform.position) <= 1)
             {
-                Debug.Log("blocker " + i + " is intersecting with spawner. blocker is " + Vector3.Distance(loc, blockers[i].transform.position) + " units away");
+                Debug.Log("blocker " + i + " is intersecting with " + gameObject.name + spawner.name + ". blocker is " + Vector3.Distance(spawner.transform.position, blockers[i].transform.position) + " units away");
                 return false;
-            } else
-            {
-                Debug.Log("blocker " + i + " does not intersect with spawner. blocker is " + Vector3.Distance(loc, blockers[i].transform.position) + " units away");
             }
         }
 
