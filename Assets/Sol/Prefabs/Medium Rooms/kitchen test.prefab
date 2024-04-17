@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 5383382515637331852}
   - component: {fileID: 1199206400080166838}
   m_Layer: 0
-  m_Name: kitchen thingy i guess
+  m_Name: kitchen test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
