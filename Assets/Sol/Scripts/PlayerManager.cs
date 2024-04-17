@@ -191,4 +191,9 @@ public class PlayerManager : MonoBehaviour
             cam.transform.position = new Vector3(handPos.x, cam.transform.position.y, handPos.z);
         }
     }
+
+    public void SetSensitivity(float  sensitivity)
+    {
+        this.sensitivity = sensitivity;
+    }
 }
