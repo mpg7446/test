@@ -120,6 +120,11 @@ public class GameManager : MonoBehaviour
         SetCamera(settingsPos, settingsRot);
     }
 
+    public void CharacterMenu()
+    {
+        SetCamera(custPos, custRot);
+    }
+
     public void MainMenu()
     {
         SetCamera(menuPos, menuRot);
