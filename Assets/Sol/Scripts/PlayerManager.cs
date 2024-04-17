@@ -2,25 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
 public class PlayerManager : MonoBehaviour
 {
+    [Header("Hand Settings")]
     public GameObject hand;
-    public float sensitivity = 10;
+    public float sensitivity = 75;
     private Vector3 handPos = Vector3.zero;
     [SerializeField] private Vector3 handStartPos = Vector3.zero;
     private Vector3 posUpdate = Vector3.zero;
     public GameObject holding;
     private Vector3 throwForce;
     private bool movementCooldown;
+    [Space(13)]
 
+    [Header("Debug")]
     public GameObject cam;
     public bool debug;
+    [Space(13)]
 
+    [Header("Scoring & Text Display")]
     public int score;
+    public TextMeshProUGUI currentScore;
+
     SphereCollider col;
 
     private void Awake()
@@ -46,7 +54,6 @@ public class PlayerManager : MonoBehaviour
 
     void FixedUpdate()
     {
-
         // clear holding if object has been collected
         if (holding == null)
         {
@@ -85,6 +92,9 @@ public class PlayerManager : MonoBehaviour
             // enable hand collisions when not holding
             Invoke("ThrowCooldown", 2.0f);
         }
+
+        // update score display
+        currentScore.text = "Score: " + score;
     }
 
     void ThrowCooldown()

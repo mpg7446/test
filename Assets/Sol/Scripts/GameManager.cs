@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     [Space(5)]
     public int gameTimer = 0;
     public int highScore;
+    public TextMeshProUGUI highScoreText;
     public Texture2D img;
 
     void Start()
@@ -100,6 +102,7 @@ public class GameManager : MonoBehaviour
         if (highScore < playerManager.score)
         {
             highScore = playerManager.score;
+            highScoreText.text = "High Score: " + highScore;
         }
 
         SetCamera(menuPos, menuRot);
