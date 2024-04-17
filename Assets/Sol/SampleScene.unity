@@ -822,15 +822,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094965622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 14.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 922107615}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2094965624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,12 +843,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f3a46a52f48e340b9a56f72a00ca1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuPos: {x: 0, y: 0, z: 0}
-  menuRot: {x: 0, y: 0, z: 0}
-  settingsPos: {x: 0, y: 0, z: 0}
-  settingsRot: {x: 0, y: 0, z: 0}
-  custPos: {x: 0, y: 0, z: 0}
-  custRot: {x: 0, y: 0, z: 0}
+  menuPos: {x: 0, y: 20, z: 0}
+  menuRot: {x: 0, y: 180, z: 0}
+  settingsPos: {x: 0, y: 20, z: 0}
+  settingsRot: {x: 0, y: 90, z: 0}
+  custPos: {x: 0, y: 20, z: 0}
+  custRot: {x: 0, y: -90, z: 0}
   playingPos: {x: 0, y: 20, z: 6.96}
   playingRot: {x: 90, y: 0, z: 0}
   player: {fileID: 1201186387}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class room : MonoBehaviour
@@ -124,9 +125,29 @@ public class room : MonoBehaviour
 
     private bool CheckEmpty(GameObject spawner, bool largeRoom = false)
     {
-        if (largeRoom) // currently not in use
+        if (largeRoom) 
         {
-            // check adjacent areas for placed rooms too
+            // get direction of large room and figure out the location of the next tile/area
+            // use switch to figure out direction and then move ??
+
+            float rotation = spawner.transform.rotation.y;
+            Vector3 loc = spawner.transform.position;
+
+            switch (rotation)
+            {
+                case 0:
+                    loc.x -= 10;
+                    break;
+                case 90:
+                    loc.z -= 10;
+                    break;
+                case 180:
+                    loc.x += 10;
+                    break;
+                case 270:
+                    loc.z += 10;
+                    break;
+            }
         }
 
         GameObject blocked = null;
