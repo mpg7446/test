@@ -180,18 +180,22 @@ MonoBehaviour:
   cubicLoop: 3
   roomCoords: 
   roomWalls: 
-  debug: 1
+  debug: 0
   cubicDebugRoom: {fileID: 1247889492686940840, guid: c0a5f49e48f88764e9beed50be9eb309, type: 3}
   smallDebugRoom: {fileID: 1247889492686940840, guid: 952eb32cf8bf5fa4f9ecf00e25ee03f4, type: 3}
   mediumDebugRoom: {fileID: 1247889492686940840, guid: 09ec765f1fef47340b5fa9d48beb97b8, type: 3}
   largeDebugRoom: {fileID: 1247889492686940840, guid: e58fd5d9c4f19f34c91bc4367b2d3ba0, type: 3}
   debugWall: {fileID: 1247889492686940840, guid: 383197f31a9bd9c40bea71f92fdbefc2, type: 3}
   debugDoorWall: {fileID: 1247889492686940840, guid: 296cc4b5d5709b0428bcd1991e865f3b, type: 3}
-  smallRooms: []
-  mediumRooms: []
-  largeRooms: []
-  Walls: []
-  Doors: []
+  smallRooms:
+  - {fileID: 1247889492686940840, guid: 952eb32cf8bf5fa4f9ecf00e25ee03f4, type: 3}
+  mediumRooms:
+  - {fileID: 1247889492686940840, guid: f254d66b42a631141b4b60f0b22ddf3d, type: 3}
+  - {fileID: 1247889492686940840, guid: 09ec765f1fef47340b5fa9d48beb97b8, type: 3}
+  largeRooms:
+  - {fileID: 1247889492686940840, guid: e58fd5d9c4f19f34c91bc4367b2d3ba0, type: 3}
+  Walls:
+  - {fileID: 1247889492686940840, guid: 383197f31a9bd9c40bea71f92fdbefc2, type: 3}
   placedRooms: []
 --- !u!1 &737447057
 GameObject:

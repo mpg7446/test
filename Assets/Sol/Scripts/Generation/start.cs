@@ -51,7 +51,6 @@ public class start : MonoBehaviour
     public List<GameObject> mediumRooms = new List<GameObject>();
     public List<GameObject> largeRooms = new List<GameObject>();
     public List<GameObject> Walls = new List<GameObject>();
-    public List<GameObject> Doors = new List<GameObject>();
 
     // placed rooms for room generation
      public List<GameObject> placedRooms = new List<GameObject>();

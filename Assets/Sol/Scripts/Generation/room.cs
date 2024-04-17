@@ -112,6 +112,11 @@ public class room : MonoBehaviour
             {
                 GameObject wall = Instantiate(root.debugWall, Vector3.zero, new Quaternion(), spawner.transform);
                 wall.transform.localPosition = Vector3.zero;
+            } else
+            {
+                int rand = root.RNG(root.Walls.Count);
+                GameObject wall = Instantiate(root.Walls[rand], Vector3.zero, new Quaternion(), spawner.transform);
+                wall.transform.localPosition = Vector3.zero;
             }
         }
         //Destroy(spawner);
