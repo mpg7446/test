@@ -3040,7 +3040,7 @@ MonoBehaviour:
   playing: 0
   gameTimer: 0
   highScore: 0
-  highScoreText: {fileID: 0}
+  highScoreText: {fileID: 410121099}
   img: {fileID: 2800000, guid: 024a6561394fc934cabd05224e1317f0, type: 3}
 --- !u!1 &2126817616
 GameObject:
