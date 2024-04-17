@@ -115,6 +115,16 @@ public class GameManager : MonoBehaviour
         //StartGame();
     }
 
+    public void SettingsMenu()
+    {
+        SetCamera(settingsPos, settingsRot);
+    }
+
+    public void MainMenu()
+    {
+        SetCamera(menuPos, menuRot);
+    }
+
     public void SetCamera(Vector3 pos, Vector3 rot)
     {
         gameObject.transform.position = pos;
