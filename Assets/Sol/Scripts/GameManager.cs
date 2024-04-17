@@ -72,6 +72,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // user input / keybinds
+    private void Update()
+    {
+        if (Input.GetKeyDown("escape"))
+        {
+            EndGame();
+        }
+    }
+
     public void StartGame()
     {
         SetCamera(playingPos, playingRot);
