@@ -27,19 +27,16 @@ public class room : MonoBehaviour
         // place rooms on spawners
         foreach (GameObject spawner in spawners)
         {
-            if (CheckEmpty(spawner))
+            int chance = root.RNG(2);
+            if (root.maxLargeRooms > 0 && chance == 0 && CheckEmpty(spawner, true))
             {
-                int chance = root.RNG(2);
-                if (root.maxLargeRooms > 0 && chance == 0)
-                {
-                    // generate large rooms
-                    PlaceRoom(spawner, true, root.debug, root.largeRoomChance);
-                }
-                else
-                {
-                    // generate smaller rooms
-                    PlaceRoom(spawner, false, root.debug);
-                }
+                // generate large rooms
+                PlaceRoom(spawner, true, root.debug, root.largeRoomChance);
+            }
+            else if (CheckEmpty(spawner))
+            {
+                // generate smaller rooms
+                PlaceRoom(spawner, false, root.debug);
             }
         }
     }
@@ -125,13 +122,10 @@ public class room : MonoBehaviour
 
     private bool CheckEmpty(GameObject spawner, bool largeRoom = false)
     {
+        Vector3 loc = spawner.transform.position;
         if (largeRoom) 
         {
-            // get direction of large room and figure out the location of the next tile/area
-            // use switch to figure out direction and then move ??
-
             float rotation = spawner.transform.rotation.y;
-            Vector3 loc = spawner.transform.position;
 
             switch (rotation)
             {
@@ -150,7 +144,6 @@ public class room : MonoBehaviour
             }
         }
 
-        GameObject blocked = null;
 
         GameObject[] blockers;
         blockers = GameObject.FindGameObjectsWithTag("spawned");
@@ -158,20 +151,16 @@ public class room : MonoBehaviour
 
         for (int i = 0; i < blockers.Length; i++)
         {
-            if (Vector3.Distance(spawner.transform.position, blockers[i].transform.position) <= 0.01)
+            if (Vector3.Distance(loc, blockers[i].transform.position) <= 1)
             {
-                blocked = blockers[i];
-                Debug.Log("blocker " + i + " is intersecting with spawner");
+                Debug.Log("blocker " + i + " is intersecting with spawner. blocker is " + Vector3.Distance(loc, blockers[i].transform.position) + " units away");
+                return false;
             } else
             {
-                Debug.Log("blocker " + i + " does not intersect with spawner");
+                Debug.Log("blocker " + i + " does not intersect with spawner. blocker is " + Vector3.Distance(loc, blockers[i].transform.position) + " units away");
             }
         }
 
-        if (blocked != null)
-        {
-            return false;
-        }
         return true;
     }
 
