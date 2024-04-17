@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     [Space(13)]
 
     [Header("Game Stats")]
-    public bool startGame = false;
+    [SerializeField] private bool debugStartGame = false;
     public bool playing = false;
     [Space(5)]
     public int gameTimer = 0;
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (startGame)
+        if (debugStartGame)
         {
             StartGame();
         }
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         playerManager.score = 0;
 
         gameTimer = 500;
-        startGame = false;
+        debugStartGame = false;
         playing = true;
 
         Debug.Log("Game started");
