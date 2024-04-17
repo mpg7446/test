@@ -160,8 +160,8 @@ public class PlayerManager : MonoBehaviour
         // apply cursor movement to hand position
         if (!movementCooldown)
         {
-            posUpdate.x += Input.GetAxis("Mouse X") * sensitivity / 100;
-            posUpdate.z += Input.GetAxis("Mouse Y") * sensitivity / 100;
+            posUpdate.x += (Input.GetAxis("Mouse X") * sensitivity / 1) * Time.deltaTime;
+            posUpdate.z += (Input.GetAxis("Mouse Y") * sensitivity / 1) * Time.deltaTime;
 
             handPos = WallCollision(handPos, posUpdate);
             posUpdate = handPos;

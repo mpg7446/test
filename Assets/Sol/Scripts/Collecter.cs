@@ -6,7 +6,7 @@ public class Collecter : MonoBehaviour
 {
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Collectable"))
+        if (other.gameObject.CompareTag("Collectable") && !Input.GetMouseButton(0))
         {
             Debug.Log("Collected Object");
             // collision is collectable
