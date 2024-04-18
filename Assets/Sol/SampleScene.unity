@@ -939,14 +939,15 @@ MonoBehaviour:
   debugWall: {fileID: 1247889492686940840, guid: 383197f31a9bd9c40bea71f92fdbefc2, type: 3}
   debugDoorWall: {fileID: 1247889492686940840, guid: 296cc4b5d5709b0428bcd1991e865f3b, type: 3}
   smallRooms:
-  - {fileID: 1247889492686940840, guid: f19ab46d89fa91e44b9930289e753843, type: 3}
   - {fileID: 1247889492686940840, guid: f9f6c4bf48177864d990fffb0e0204a6, type: 3}
+  - {fileID: 1247889492686940840, guid: a643977e41186c642a13c0d41896020c, type: 3}
   mediumRooms:
   - {fileID: 1247889492686940840, guid: f254d66b42a631141b4b60f0b22ddf3d, type: 3}
   largeRooms:
-  - {fileID: 1247889492686940840, guid: e58fd5d9c4f19f34c91bc4367b2d3ba0, type: 3}
+  - {fileID: 1247889492686940840, guid: b00487dee3fe57d46b15c2fb557e3490, type: 3}
   Walls:
   - {fileID: 1247889492686940840, guid: 383197f31a9bd9c40bea71f92fdbefc2, type: 3}
+  - {fileID: 1247889492686940840, guid: 35fdc99123460b74f9ec9848cb44626b, type: 3}
   placedRooms: []
 --- !u!1 &579199019
 GameObject:
