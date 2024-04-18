@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public bool playing = false;
     [Space(5)]
     public int gameTimer = 0;
+    public TextMeshProUGUI timer;
     public int highScore;
     public TextMeshProUGUI highScoreText;
     public Texture2D img;
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
         if (playing)
         {
             gameTimer--;
-            GameObject[] collectables = GameObject.FindGameObjectsWithTag("Collectable");
+            timer.text = "Time: " + (gameTimer / 50 + 1) + "s!";
 
             //if (collectables.Length <= 0 || gameTimer <= 0)
             if (gameTimer <= 0)
