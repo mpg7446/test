@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7952201502468489411}
   - component: {fileID: 4130180733777921754}
   - component: {fileID: 4945271081878473560}
+  - component: {fileID: 7254368266854843013}
   m_Layer: 0
   m_Name: pillow (1)
   m_TagString: Collectable
@@ -113,6 +114,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &7254368266854843013
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31750683572702820}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &65947008591183167
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +371,7 @@ GameObject:
   - component: {fileID: 3699459543252962}
   - component: {fileID: 1731023631780812177}
   - component: {fileID: 5715213756172626180}
+  - component: {fileID: 434623257507255611}
   m_Layer: 0
   m_Name: wooden_chair
   m_TagString: Collectable
@@ -454,6 +472,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &434623257507255611
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949452617646087735}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2023901797649161106
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +501,7 @@ GameObject:
   - component: {fileID: 510784199960607303}
   - component: {fileID: 6211731995578072135}
   - component: {fileID: 6434493497522931487}
+  - component: {fileID: 1183448845297538747}
   m_Layer: 0
   m_Name: house_plant (1)
   m_TagString: Collectable
@@ -569,6 +604,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &1183448845297538747
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023901797649161106}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2186302109243949365
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +633,7 @@ GameObject:
   - component: {fileID: 384972415991800032}
   - component: {fileID: 5065690403284453917}
   - component: {fileID: 5275234342309743051}
+  - component: {fileID: 1540711063587800900}
   m_Layer: 0
   m_Name: monitor
   m_TagString: Collectable
@@ -682,6 +734,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &1540711063587800900
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2186302109243949365}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2197352237279363098
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +763,7 @@ GameObject:
   - component: {fileID: 395872871800234447}
   - component: {fileID: 1238802857621289821}
   - component: {fileID: 3998163170616427270}
+  - component: {fileID: 9127149993225478844}
   m_Layer: 0
   m_Name: wooden_chair (3)
   m_TagString: Collectable
@@ -795,6 +864,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &9127149993225478844
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2197352237279363098}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2289303117141875314
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +985,7 @@ GameObject:
   - component: {fileID: 4483289406908409478}
   - component: {fileID: 8305253831192627519}
   - component: {fileID: 5404232064633120491}
+  - component: {fileID: 6402033352581508935}
   m_Layer: 0
   m_Name: large_lamp
   m_TagString: Collectable
@@ -1000,6 +1086,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &6402033352581508935
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681659959705569107}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2981065659838705941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1343,7 @@ GameObject:
   - component: {fileID: 6160316974470734451}
   - component: {fileID: 8099613989021395278}
   - component: {fileID: 444671410048647614}
+  - component: {fileID: 7931877366727739215}
   m_Layer: 0
   m_Name: pillow
   m_TagString: Collectable
@@ -1341,6 +1444,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &7931877366727739215
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3909330524431158411}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4001422679945686623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,6 +1570,7 @@ GameObject:
   - component: {fileID: 41858382820476779}
   - component: {fileID: 7389321450004361386}
   - component: {fileID: 7516182382044439308}
+  - component: {fileID: 8357315425938099194}
   m_Layer: 0
   m_Name: apple (1)
   m_TagString: Collectable
@@ -1551,6 +1671,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &8357315425938099194
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4029733031692372243}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4032997755938313172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1564,6 +1700,7 @@ GameObject:
   - component: {fileID: 3240597661741036033}
   - component: {fileID: 6766667576925763838}
   - component: {fileID: 1775868746707556739}
+  - component: {fileID: 7558995093442402773}
   m_Layer: 0
   m_Name: goose
   m_TagString: Collectable
@@ -1664,6 +1801,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &7558995093442402773
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032997755938313172}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4067991709666848601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +1927,7 @@ GameObject:
   - component: {fileID: 2516237615859194078}
   - component: {fileID: 1974692906668504098}
   - component: {fileID: 1867382759081600093}
+  - component: {fileID: 1452368157590551477}
   m_Layer: 0
   m_Name: wooden_chair (1)
   m_TagString: Collectable
@@ -1874,6 +2028,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &1452368157590551477
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173575403776833803}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4406203594388379838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2368,6 +2538,7 @@ GameObject:
   - component: {fileID: 8201214270591220182}
   - component: {fileID: 7060951346977556334}
   - component: {fileID: 8348888359290538642}
+  - component: {fileID: 8459013598569442255}
   m_Layer: 0
   m_Name: wooden_chair (2)
   m_TagString: Collectable
@@ -2468,6 +2639,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &8459013598569442255
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7696771186551396355}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8153830121721810876
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,6 +2668,7 @@ GameObject:
   - component: {fileID: 7649580825535868521}
   - component: {fileID: 5439294393488385410}
   - component: {fileID: 8569451635064603402}
+  - component: {fileID: 3751493567438326311}
   m_Layer: 0
   m_Name: house_plant
   m_TagString: Collectable
@@ -2583,6 +2771,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &3751493567438326311
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153830121721810876}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8372684769090206155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,6 +2800,7 @@ GameObject:
   - component: {fileID: 2659862578360087584}
   - component: {fileID: 4823442820749858683}
   - component: {fileID: 4993286246066629444}
+  - component: {fileID: 1309978780371712311}
   m_Layer: 0
   m_Name: apple
   m_TagString: Collectable
@@ -2696,6 +2901,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 15
   objective: 0
+--- !u!54 &1309978780371712311
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8372684769090206155}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8449672248399974503
 GameObject:
   m_ObjectHideFlags: 0
