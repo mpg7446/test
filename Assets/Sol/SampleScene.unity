@@ -1071,17 +1071,21 @@ MonoBehaviour:
   smallDebugRoom: {fileID: 1247889492686940840, guid: 952eb32cf8bf5fa4f9ecf00e25ee03f4, type: 3}
   mediumDebugRoom: {fileID: 1247889492686940840, guid: 09ec765f1fef47340b5fa9d48beb97b8, type: 3}
   largeDebugRoom: {fileID: 1247889492686940840, guid: e58fd5d9c4f19f34c91bc4367b2d3ba0, type: 3}
-  debugWall: {fileID: 1247889492686940840, guid: 383197f31a9bd9c40bea71f92fdbefc2, type: 3}
+  debugWall: {fileID: 1247889492686940840, guid: faea4590cbab94c45b92871f73be86c4, type: 3}
   debugDoorWall: {fileID: 1247889492686940840, guid: 296cc4b5d5709b0428bcd1991e865f3b, type: 3}
   smallRooms:
   - {fileID: 1247889492686940840, guid: f9f6c4bf48177864d990fffb0e0204a6, type: 3}
+  - {fileID: 1247889492686940840, guid: cdb2ad036e8b2c240a0aa44c2c206682, type: 3}
   - {fileID: 1247889492686940840, guid: a643977e41186c642a13c0d41896020c, type: 3}
+  - {fileID: 1247889492686940840, guid: f19ab46d89fa91e44b9930289e753843, type: 3}
   mediumRooms:
   - {fileID: 1247889492686940840, guid: f254d66b42a631141b4b60f0b22ddf3d, type: 3}
   largeRooms:
   - {fileID: 1247889492686940840, guid: b00487dee3fe57d46b15c2fb557e3490, type: 3}
   Walls:
+  - {fileID: 1247889492686940840, guid: 85a175426d2f2614ea1522f72df14e4a, type: 3}
   - {fileID: 1247889492686940840, guid: 35fdc99123460b74f9ec9848cb44626b, type: 3}
+  - {fileID: 1247889492686940840, guid: 8a4c2e4be1e6ae5488b8d4f8b49fe910, type: 3}
   - {fileID: 1247889492686940840, guid: faea4590cbab94c45b92871f73be86c4, type: 3}
   placedRooms: []
 --- !u!1 &579199019
@@ -3176,6 +3180,7 @@ MonoBehaviour:
   debugStartGame: 0
   playing: 0
   gameTimer: 0
+  timer: {fileID: 199344773}
   highScore: 0
   highScoreText: {fileID: 410121099}
   img: {fileID: 2800000, guid: 024a6561394fc934cabd05224e1317f0, type: 3}
