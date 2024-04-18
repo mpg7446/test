@@ -97,7 +97,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4122231570630169201, guid: 496c4ef412726b04788d807b7b43a971, type: 3}
 --- !u!114 &1985271599270666964
@@ -260,7 +260,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4025058696403948520, guid: 6838fc416ec1c9844b47e4c8dcdb2395, type: 3}
 --- !u!114 &8257339271472658372
@@ -390,7 +390,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3645058858012553506, guid: 0922de21834731e40ad516f104e27edf, type: 3}
 --- !u!114 &5773524029580527868
@@ -964,7 +964,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6217094870486490133, guid: f5bef236bdecd2744859711abce0ff76, type: 3}
 --- !u!114 &6133319494142393602
@@ -1248,7 +1248,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3645058858012553506, guid: 0922de21834731e40ad516f104e27edf, type: 3}
 --- !u!114 &7588295048099485666
@@ -1378,7 +1378,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -864020715618277806, guid: 10d1d81bfe26b7d4cb14cdbf33464154, type: 3}
 --- !u!114 &6481962880190194317
@@ -1605,7 +1605,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4731840015933613875, guid: 6eb3d5bee760b5e438c5712060f0291d, type: 3}
 --- !u!114 &6924768447202926433
@@ -1916,7 +1916,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1238218227891777710, guid: 6286e06a675940d40bc0ba1c4d21d757, type: 3}
 --- !u!114 &6297117185799778605
