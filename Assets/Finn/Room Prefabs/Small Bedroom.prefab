@@ -659,6 +659,8 @@ GameObject:
   - component: {fileID: 2565847481251049829}
   - component: {fileID: 1455897593698827968}
   - component: {fileID: 3733647283738331658}
+  - component: {fileID: 8384782460540368396}
+  - component: {fileID: 2981412222087713179}
   m_Layer: 2
   m_Name: desk
   m_TagString: Untagged
@@ -731,6 +733,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8384782460540368396
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940965026300488671}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2502843528329499362, guid: c75b641793edaae4faff6875f89be955, type: 3}
+--- !u!54 &2981412222087713179
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940965026300488671}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3103858762296513466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,6 +1681,8 @@ GameObject:
   - component: {fileID: 7612243771178198741}
   - component: {fileID: 6776726623586527600}
   - component: {fileID: 8786298281792527802}
+  - component: {fileID: 1999358636193141355}
+  - component: {fileID: 5103136292750380195}
   m_Layer: 2
   m_Name: green_bed
   m_TagString: Untagged
@@ -1722,6 +1756,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1999358636193141355
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129145212352461935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8796164838979740448, guid: 4a247a73e4604b947a9eb6fb69f93f66, type: 3}
+--- !u!54 &5103136292750380195
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7129145212352461935}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7524137981215907967
 GameObject:
   m_ObjectHideFlags: 0
