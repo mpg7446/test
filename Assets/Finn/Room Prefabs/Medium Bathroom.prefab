@@ -1410,7 +1410,6 @@ MonoBehaviour:
   spawners:
   - {fileID: 2906601269115823086}
   - {fileID: 5253358441716100581}
-  - {fileID: 0}
 --- !u!1 &8760951136178171003
 GameObject:
   m_ObjectHideFlags: 0

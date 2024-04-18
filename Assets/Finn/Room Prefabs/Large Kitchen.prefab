@@ -673,7 +673,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawners:
-  - {fileID: 0}
   - {fileID: 3725218735752526477}
   - {fileID: 3637936452599360396}
   - {fileID: 7391557112798080537}
