@@ -8,6 +8,7 @@ TagManager:
   - Walls
   - root
   - spawned
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - ArmRayCast
+  - Collectables
   - 
   - 
   - 

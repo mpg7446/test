@@ -20,6 +20,12 @@ public class PlayerManager : MonoBehaviour
     private bool movementCooldown;
     [Space(13)]
 
+    //Izzy
+    [Header("Arm Settings")]
+    public GameObject arm;
+    public S_Arm armScript;
+    public IzzyHand IzzyHandCollision;
+
     [Header("Debug")]
     public GameObject cam;
     public bool debug;
@@ -45,11 +51,27 @@ public class PlayerManager : MonoBehaviour
         holding = gameObject;
         movementCooldown = true;
         Invoke("MovementCooldown", 0.4f);
+
+        //Izzy
+        armScript.enabled = true;
     }
     // return cursor to regular state when game ends
     private void OnDisable()
     {
+
+        //Izzy
+        armScript.enabled = false;
+
         DisableHand();
+
+
+    }
+
+    private void Update()
+    {
+        //Izzy
+        // move hand around
+        Move();
     }
 
     void FixedUpdate()
@@ -60,8 +82,9 @@ public class PlayerManager : MonoBehaviour
             holding = gameObject;
         }
 
+        //Izzy
         // move hand around
-        Move();
+        //Move();
 
         // left click detection
         if (Input.GetMouseButton(0) && holding == gameObject)
@@ -148,7 +171,11 @@ public class PlayerManager : MonoBehaviour
 
     public void Grab()
     {
-        col.enabled = false;
+
+        //Izzy
+        //col.enabled = false;
+        IzzyHandCollision.Enable();
+
 
         RaycastHit hit;
         if (Physics.Raycast(HandPos(10), hand.transform.TransformDirection(Vector3.down), out hit, 15) && hit.collider.CompareTag("Collectable"))
@@ -157,7 +184,10 @@ public class PlayerManager : MonoBehaviour
             holding.transform.position = hand.transform.position;
         }
 
-        col.enabled = true;
+        //Izzy
+        //col.enabled = true;
+        IzzyHandCollision.Disable();
+        
     }
 
     public Vector3 HandPos(float offset = 0)

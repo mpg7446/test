@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI highScoreText;
     public Texture2D img;
 
+    //Izzy
+    [Header("Arm")]
+    public S_Arm armScript;
+
     void Start()
     {
         SetCamera(menuPos, menuRot);
@@ -95,6 +99,18 @@ public class GameManager : MonoBehaviour
         debugStartGame = false;
         playing = true;
 
+        //Izzy
+        int counter = 0;
+        int armLayer = LayerMask.NameToLayer("ArmRayCast");
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Walls").Length; i++)
+        {
+            GameObject.FindGameObjectsWithTag("Walls")[i].layer = armLayer;
+            counter++;
+        }
+        Debug.Log("GameWallCounter" + counter);
+
+        armScript.Begin();
+
         Debug.Log("Game started");
     }
 
@@ -111,12 +127,17 @@ public class GameManager : MonoBehaviour
         player.SetActive(false);
 
         playing = false;
+        
+
+        //Izzy
+        armScript.End();
 
         Debug.Log("Game ended");
 
         // THIS IS FOR TESTING PURPOSES ONLY
         // PLEASE REMOVE THE FOLLOWING LINE FOR RELEASE
         //StartGame();
+
     }
 
     public void SettingsMenu()
