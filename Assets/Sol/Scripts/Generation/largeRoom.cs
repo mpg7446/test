@@ -1,10 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.VFX;
 
 public class largeRoom : MonoBehaviour
 {
